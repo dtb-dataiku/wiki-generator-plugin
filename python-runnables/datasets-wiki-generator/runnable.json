@@ -37,7 +37,8 @@
             "label": "Tag(s)",
             "type": "MULTISELECT",
             "visibilityCondition": "model.use_filter",
-            "getChoicesFromPython": true
+            "getChoicesFromPython": true,
+            "disableAutoReload": true
         },
         {
             "name": "exclude",
