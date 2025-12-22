@@ -48,16 +48,9 @@ class MyRunnable(Runnable):
         else:
             selected_datasets = [d for d in datasets]
             
-        message = []
-        for ds_name in datasets:
+        for ds_name in selected_datasets:
             ds_metadata = extractor.get_dataset_metadata(client, project_key, ds_name)
-            if ds_metadata:
-                message.append(f'Metadata for {ds_name}')
-            
             ds_content = formatter.dataset_to_markdown(ds_metadata)
-            if ds_content:
-                message.append(f'Content for {ds_name}')
-                
             publisher.publish_to_dataiku_wiki(client, project_key, ds_name, ds_content)
             
-        return '\n'.join(message)
+        return f'Number of datasets: {len(selected_datasets)}'
