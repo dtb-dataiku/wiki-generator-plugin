@@ -38,3 +38,12 @@ class MyRunnable(Runnable):
         # Get client and project
         client = get_dataiku_client()
         project_key = client.get_default_project().project_key
+        
+        # Generate wiki for datasets
+        if not datasets or select_all:
+            if use_filter:
+                selected_datasets = list_project_datasets(client, project_key, tag_filter=tags)
+            else:
+                selected_datasets = list_project_datasets(client, project_key)
+        else:
+            selected_datasets = [d for d in datasets]
