@@ -8,7 +8,7 @@
 
     "impersonate": false,
     "permissions": [],
-    "resultType": "NONE",
+    "resultType": "HTML",
 
     "macroRoles": [
         {
