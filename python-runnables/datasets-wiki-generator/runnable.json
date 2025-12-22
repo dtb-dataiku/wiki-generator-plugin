@@ -46,9 +46,9 @@
 
         /* A "SELECT" parameter is a multi-choice selector. Choices are specified using the selectChoice field*/
         {
-            "name": "parameter8",
-            "label": "parameter8",
-            "type": "SELECT",
+            "name": "datasets",
+            "label": "Dataset(s)",
+            "type": "MULTISELECT",
             "selectChoices": [
                 {
                     "value": "val_x",
