@@ -29,11 +29,11 @@ class MyRunnable(Runnable):
         """
         
         # Get macro parameters
-        select_all = config.get("select_all", True)
-        use_filter = config.get("use_filter", False)
-        exclude = config.get("exclude", False)
-        tags = config.get("tags", [])
-        datasets = config.get("datasets", [])
+        select_all = self.config.get("select_all", True)
+        use_filter = self.config.get("use_filter", False)
+        exclude = self.config.get("exclude", False)
+        tags = self.config.get("tags", [])
+        datasets = self.config.get("datasets", [])
         
         # Get client and project
         client = get_dataiku_client()
