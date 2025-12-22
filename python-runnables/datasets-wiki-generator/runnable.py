@@ -40,7 +40,7 @@ class MyRunnable(Runnable):
         project_key = client.get_default_project().project_key
         
         # Generate wiki for datasets
-        if not datasets or select_all:
+        if select_all:
             if use_filter:
                 selected_datasets = extractor.list_project_datasets(client, project_key, tag_filter=tags)
             else:
