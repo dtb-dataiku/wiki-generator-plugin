@@ -1,5 +1,6 @@
 # This file is the actual code for the Python runnable datasets-wiki-generator
 from dataiku.runnables import Runnable
+from wikigenerator import extractor, formatter, publisher
 
 class MyRunnable(Runnable):
     """The base interface for a Python runnable"""
@@ -34,3 +35,6 @@ class MyRunnable(Runnable):
         tags = config.get("tags", [])
         datasets = config.get("datasets", [])
         
+        # Get client and project
+        client = get_dataiku_client()
+        project_key = client.get_default_project().project_key
