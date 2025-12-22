@@ -48,8 +48,6 @@ class MyRunnable(Runnable):
         else:
             selected_datasets = [d for d in datasets]
             
-        print(*selected_datasets, sep='\n')
-            
         for ds_name in selected_datasets:
             ds_metadata = extractor.get_dataset_metadata(client, project_key, ds_name)
             ds_content = formatter.dataset_to_markdown(ds_metadata)
