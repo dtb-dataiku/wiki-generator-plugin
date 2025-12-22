@@ -63,7 +63,8 @@
                     "value": "val_y",
                     "label": "display name for val_y"
                 }
-            ]
+            ],
+            "visibilityCondition": "!model.select_all"
         }
     ]
 }
