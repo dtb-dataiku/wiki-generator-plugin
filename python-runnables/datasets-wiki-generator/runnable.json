@@ -43,6 +43,22 @@
             "mandatory": true
         },
         {
+            "name": "tags",
+            "label": "Tag(s)",
+            "type": "MULTISELECT",
+            "selectChoices": [
+                {
+                    "value": "tag_1",
+                    "label": "display name for tag_1"
+                },
+                {
+                    "value": "tag_2",
+                    "label": "display name for tag_2"
+                }
+            ],
+            "visibilityCondition": "model.use_filter"
+        },
+        {
             "name": "exclude",
             "label": "Exclude selected tag(s)",
             "type": "BOOLEAN",
@@ -56,12 +72,12 @@
             "type": "MULTISELECT",
             "selectChoices": [
                 {
-                    "value": "val_x",
-                    "label": "display name for val_x"
+                    "value": "data_1",
+                    "label": "display name for data_1"
                 },
                 {
-                    "value": "val_y",
-                    "label": "display name for val_y"
+                    "value": "data_2",
+                    "label": "display name for data_2"
                 }
             ],
             "visibilityCondition": "!model.select_all"
