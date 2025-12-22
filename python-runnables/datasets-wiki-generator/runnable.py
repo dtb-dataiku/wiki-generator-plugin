@@ -26,5 +26,11 @@ class MyRunnable(Runnable):
         Do stuff here. Can return a string or raise an exception.
         The progress_callback is a function expecting 1 value: current progress
         """
-        raise Exception("unimplemented")
+        
+        # Get macro parameters
+        select_all = config.get("select_all", True)
+        use_filter = config.get("use_filter", False)
+        exclude = config.get("exclude", False)
+        tags = config.get("tags", [])
+        datasets = config.get("datasets", [])
         
