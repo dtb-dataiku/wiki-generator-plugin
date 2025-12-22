@@ -52,5 +52,3 @@ class MyRunnable(Runnable):
             ds_metadata = extractor.get_dataset_metadata(client, project_key, ds_name)
             ds_content = formatter.dataset_to_markdown(ds_metadata)
             publisher.publish_to_dataiku_wiki(client, project_key, ds_name, ds_content)
-            
-        return f'Number of datasets: {len(selected_datasets)}'
