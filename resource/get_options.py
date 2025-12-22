@@ -10,10 +10,17 @@ def do(payload, config, plugin_config, inputs):
     
     # Set project dropdown
     if parameter_name == "tags":
-        tags = list_dataset_tags(client, project_key)
-        choices = [{'value': t, 'label': t} for t in tags]
+        available_tags = list_dataset_tags(client, project_key)
+        choices = [{'value': t, 'label': t} for t in available_tags]
         return {"choices": choices}
     
     # Set dataset multiselect box
     elif parameter_name == "datasets":
+        selected_tags = config.get("tags", [])
+        if selected_tags:
+            available_datasets = list_project_datasets(client, project_key, tag_filter=selected_tags)
+        else:
+            available_datasets = list_project_datasets(client, project_key)
+            
+        choices = [{'value': d, 'label': d} for d in available_datasets]
         return {"choices": choices}
