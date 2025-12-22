@@ -36,7 +36,7 @@ class MyRunnable(Runnable):
         datasets = self.config.get("datasets", [])
         
         # Get client and project
-        client = get_dataiku_client()
+        client = extractor.get_dataiku_client()
         project_key = client.get_default_project().project_key
         
         # Generate wiki for datasets
