@@ -5,7 +5,7 @@
         "label": "Wiki generator",
         "description": "Create wiki articles",
         "author": "darin.brown@dataiku.com",
-        "icon": "far fa-newspaper",
+        "icon": "fas fa-newspaper",
         "recipesCategory": "",
         "tags": [], //for example: ["Machine Learning", "NLP"]
         "url": "",
