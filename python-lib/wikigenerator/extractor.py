@@ -19,7 +19,7 @@ def list_project_datasets(client, project_key, tag_filter=None, exclude_tags=Fal
 
     try:
         project = client.get_project(project_key)
-        dataset_objects = project.list_datasets(as_type='objects', include_shared=False)
+        dataset_objects = project.list_datasets(as_type='objects', include_shared=False) # NEED TO REVISIT THIS
 
         datasets = [d.name for d in dataset_objects]
 
