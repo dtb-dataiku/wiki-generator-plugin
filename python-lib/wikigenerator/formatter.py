@@ -9,8 +9,8 @@ def _clean_text(text):
         return ''
 
     cleaned_text = re.sub(r'\s+', ' ', text.replace('|', ' - ').strip())
-    cleaned_text = re.sub(r'\n\s*', ', ', cleaned_text)
-    cleaned_text = re.sub(r'^\s*-\s*.*', '', cleaned_text)
+#     cleaned_text = re.sub(r'\n\s*', ', ', cleaned_text)
+#     cleaned_text = re.sub(r'^\n\s*-\s*.*', '; ', cleaned_text)
     return cleaned_text
 
 def _generate_table_rows(columns):
