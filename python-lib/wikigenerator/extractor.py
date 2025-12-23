@@ -99,7 +99,7 @@ def get_dataset_metadata(client, project_key, dataset_name):
         metadata['connection'] = dataset_info['params']['connection']
         metadata['short_description'] = dataset_info.get('shortDesc', 'No description provided.').strip()
         metadata['long_description'] = dataset_info.get('description', 'No description provided.').strip()
-        metadata['columns'] = [{'name': c['name'], 'type': c['type'],  'description': c['comment']} for c in dataset_info['schema']['columns']]
+        metadata['columns'] = [{'name': c['name'], 'type': c['type'],  'description': c.get('comment', '')} for c in dataset_info['schema']['columns']]
 
         return metadata
     except Exception as e:
