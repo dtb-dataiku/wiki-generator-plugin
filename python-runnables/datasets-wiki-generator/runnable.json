@@ -8,7 +8,8 @@
 
     "impersonate": false,
     "permissions": [],
-    "resultType": "NONE",
+    "resultType": "URL",
+    "resultLabel": "Link to generated wiki",
 
     "macroRoles": [
         {
