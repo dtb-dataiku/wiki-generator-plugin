@@ -38,6 +38,8 @@ class MyRunnable(Runnable):
         # Get client and project
         client = extractor.get_dataiku_client()
         project_key = client.get_default_project().project_key
+        host_url = client.get_general_settings().get_raw()['studioExternalUrl']
+        wiki_url = f"{host_url}/projects/{project_key/wiki}"
         
         # Generate wiki for datasets
         if select_all:
@@ -52,3 +54,5 @@ class MyRunnable(Runnable):
             ds_metadata = extractor.get_dataset_metadata(client, project_key, ds_name)
             ds_content = formatter.dataset_to_markdown(ds_metadata)
             publisher.publish_to_dataiku_wiki(client, project_key, ds_name, ds_content)
+            
+        return wiki_url
