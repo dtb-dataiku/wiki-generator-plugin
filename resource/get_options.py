@@ -18,9 +18,9 @@ def do(payload, config, plugin_config, inputs):
     elif parameter_name == "datasets":
         selected_tags = config.get("tags", [])
         if selected_tags:
-            available_datasets = list_project_datasets(client, project_key, tag_filter=selected_tags)
+            available_datasets = list_project_datasets(client, project_key, tag_filter=selected_tags, include_shared=False)
         else:
-            available_datasets = list_project_datasets(client, project_key)
+            available_datasets = list_project_datasets(client, project_key, include_shared=False)
             
         choices = [
             {'value': f'{d[0]}.{d[1]}', 'label': f"{d[1]} [{d[0]}]"}
