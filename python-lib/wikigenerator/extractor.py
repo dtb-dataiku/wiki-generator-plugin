@@ -126,7 +126,11 @@ def get_dataset_sources(client, project_key, dataset_name):
         
         # Find sources
         # NOTE: A source is an ancestor with no incoming edges (in_degree == 0)
-        sources = [node for node in ancestors if graph.in_degree(node) == 0]
+        # NOTE: A source should also be connected to another node (out_degree > 0)
+        sources = [
+            node for node in ancestors
+            if graph.in_degree(node) == 0 and and graph.out_degree(node) > 0
+        ]
         
         return sources
     
