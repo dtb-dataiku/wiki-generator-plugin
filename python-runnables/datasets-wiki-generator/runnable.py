@@ -52,7 +52,8 @@ class MyRunnable(Runnable):
             
         for ds_pkey, ds_name in selected_datasets:
             ds_metadata = extractor.get_dataset_metadata(client, ds_pkey, ds_name)
-            ds_content = formatter.dataset_to_markdown(ds_metadata)
+            ds_sources = extractor.get_dataset_sources(client, ds_pkey, ds_name)
+            ds_content = formatter.dataset_to_markdown(ds_metadata, dataset_sources=ds_sources)
             publisher.publish_to_dataiku_wiki(client, project_key, ds_name, ds_content)
             
         return wiki_url

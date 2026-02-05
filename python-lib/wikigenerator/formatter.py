@@ -47,8 +47,10 @@ def dataset_to_markdown(dataset_metadata, dataset_sources=None):
     if not ds_description:
         ds_description = 'No detailed description provided.'
         
-    if not dataset_sources:
+    if (not dataset_sources) or (not isinstance(dataset_sources, list)):
         ds_sources = 'Not calculated.'
+    else:
+        ds_sources = ', '.join([f'{d[1]} [{d[0]}]' for d in dataset_sources])
 
     columns = dataset_metadata.get('columns', [])
     table_rows = _generate_table_rows(columns)
