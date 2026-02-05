@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "meta": {
         "label": "Wiki generator",
-        "description": "Create wiki articles<br>-Data dictionary<br>[Github](https://github.com/dtb-dataiku/wiki-generator-plugin.git)",
+        "description": "Create wiki articles<br> - Data dictionary<br>[Github](https://github.com/dtb-dataiku/wiki-generator-plugin.git)",
         "author": "darin.brown@dataiku.com",
         "icon": "fas fa-marker",
         "recipesCategory": "",
