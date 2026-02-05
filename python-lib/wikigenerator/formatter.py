@@ -30,7 +30,7 @@ def _generate_table_rows(columns):
 
     return '\n'.join(rows)
 
-def dataset_to_markdown(dataset_metadata):
+def dataset_to_markdown(dataset_metadata, dataset_sources=None):
     '''Turns dictionary of dataset metadata into markdown string.'''
 
     ds_name = dataset_metadata.get('name', 'unnamed dataset')
@@ -46,6 +46,9 @@ def dataset_to_markdown(dataset_metadata):
 
     if not ds_description:
         ds_description = 'No detailed description provided.'
+        
+    if not dataset_sources:
+        ds_sources = 'Not calculated.'
 
     columns = dataset_metadata.get('columns', [])
     table_rows = _generate_table_rows(columns)
@@ -59,7 +62,9 @@ f"""
 
 ## Overview
 {ds_description}
-> Source: **{ds_proj} ({ds_pkey})**\nType: **{ds_conn} ({ds_type})**
+> Connection: **{ds_conn} ({ds_type})**
+> Project: **{ds_proj} ({ds_pkey})**
+> Sources: **{ds_sources}**
 
 ## Data Dictionary
 | Column Name | Type | Description |
