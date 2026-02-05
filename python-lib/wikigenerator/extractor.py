@@ -15,12 +15,12 @@ def get_dataiku_client(host=None, api_key=None):
         return None
     
 
-def list_project_datasets(client, project_key, tag_filter=None, exclude_tags=False):
+def list_project_datasets(client, project_key, tag_filter=None, exclude_tags=False, include_shared=True):
     '''List datasets in a Dataiku project.'''
 
     try:
         project = client.get_project(project_key)
-        dataset_items = project.list_datasets(as_type='listitems', include_shared=True)
+        dataset_items = project.list_datasets(as_type='listitems', include_shared=include_shared)
 
         datasets = [(d['projectKey'], d['name']) for d in dataset_items]
 
