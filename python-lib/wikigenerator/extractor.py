@@ -1,5 +1,6 @@
 import dataiku
 import dataikuapi
+import networkx as nx
 
 def get_dataiku_client(host=None, api_key=None):
     '''Get a Dataiku client object.'''
@@ -104,4 +105,45 @@ def get_dataset_metadata(client, project_key, dataset_name):
         return metadata
     except Exception as e:
         print(f'Error getting metadata for {dataset_name}: {e}')
+        return None
+    
+def get_dataset_sources(client, project_key, dataset_name):
+    '''Get source dataset(s) for a dataset.'''
+    
+    def _build_graph_from_lineage(lineage):
+        # Create an empty graph
+        graph = nx.DiGraph()
+        
+        # Add edges
+        for entry in lineage:
+            graph.add_edge(entry['inputDataset'], entry['outputDataset'])
+            
+        return graph
+    
+    def _find_column_sources(graph, dataset_name):
+        # Find all nodes (datasets) that have a path to the target node (dataset)
+        ancestors = nx.ancestors(graph, dataset_name)
+        
+        # Find sources
+        # NOTE: A source is an ancestor with no incoming edges (in_degree == 0)
+        sources = [node for node in ancestors if graph.in_degree(node) == 0]
+        
+        return sources
+    
+    sources = []
+    
+    try:
+        project = client.get_project(project_key)
+        dataset = project.get_dataset(dataset_name)
+        dataset_info = dataset.get_info().info['dataset']
+        column_names = [c['name'] for c in dataset_info['schema']['columns']]
+
+        for c in column_names:
+            lineage = dataset.get_column_lineage(c)
+            graph = _build_graph_from_lineage(lineage)
+            sources.extend(_find_column_sources(graph, f'{project_key}.{dataset_name}'))
+
+        return sorted(list(set([tuple(s.split('.')) for s in sources])))
+    except Exception as e:
+        print(f'Error getting source dataset(s) for {dataset_name}: {e}')
         return None
