@@ -20,7 +20,7 @@ def list_project_datasets(client, project_key, tag_filter=None, exclude_tags=Fal
 
     try:
         project = client.get_project(project_key)
-        dataset_items = project.list_datasets(as_type='listitems', include_shared=False)
+        dataset_items = project.list_datasets(as_type='listitems', include_shared=True)
 
         datasets = [(d['projectKey'], d['name']) for d in dataset_items]
 
