@@ -22,5 +22,8 @@ def do(payload, config, plugin_config, inputs):
         else:
             available_datasets = list_project_datasets(client, project_key)
             
-        choices = [{'value': d, 'label': d} for d in available_datasets]
+        choices = [
+            {'value': f'{d[0]}.{d[1]}', 'label': f"{d[1]} [{d[0]}]"}
+            for d in available_datasets
+        ]
         return {"choices": choices}

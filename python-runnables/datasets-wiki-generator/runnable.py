@@ -48,10 +48,10 @@ class MyRunnable(Runnable):
             else:
                 selected_datasets = extractor.list_project_datasets(client, project_key)
         else:
-            selected_datasets = [d for d in datasets]
+            selected_datasets = [tuple(d.split('.')) for d in datasets]
             
-        for ds_name in selected_datasets:
-            ds_metadata = extractor.get_dataset_metadata(client, project_key, ds_name)
+        for ds_pkey, ds_name in selected_datasets:
+            ds_metadata = extractor.get_dataset_metadata(client, ds_pkey, ds_name)
             ds_content = formatter.dataset_to_markdown(ds_metadata)
             publisher.publish_to_dataiku_wiki(client, project_key, ds_name, ds_content)
             

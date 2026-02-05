@@ -19,9 +19,9 @@ def list_project_datasets(client, project_key, tag_filter=None, exclude_tags=Fal
 
     try:
         project = client.get_project(project_key)
-        dataset_objects = project.list_datasets(as_type='objects', include_shared=False) # NEED TO REVISIT THIS
+        dataset_items = project.list_datasets(as_type='listitems', include_shared=True)
 
-        datasets = [d.name for d in dataset_objects]
+        datasets = [(d['projectKey'], d['name']) for d in dataset_items]
 
         if not tag_filter:
             return sorted(datasets)
@@ -33,8 +33,8 @@ def list_project_datasets(client, project_key, tag_filter=None, exclude_tags=Fal
             target_tags = set(tag_filter)
 
         filtered_datasets = []
-        for d in dataset_objects:
-            dataset_tags = set(d.get_metadata().get('tags', []))
+        for d in dataset_items:
+            dataset_tags = set(d.get('tags', []))
 
             # Check intersection: do they share any tags?
             has_overlap = not target_tags.isdisjoint(dataset_tags)
@@ -42,11 +42,11 @@ def list_project_datasets(client, project_key, tag_filter=None, exclude_tags=Fal
             if exclude_tags:
                 # EXCLUDE mode: keep dataset only if there is no overlap
                 if not has_overlap:
-                    filtered_datasets.append(d.name)
+                    filtered_datasets.append((d.get('projectKey'), d.get('name')))
             else:
                 # INCLUDE mode: keep dataset only if there is overlap
                 if has_overlap:
-                    filtered_datasets.append(d.name)
+                    filtered_datasets.append((d.get('projectKey'), d.get('name')))
 
         return sorted(filtered_datasets)
     except Exception as e:
