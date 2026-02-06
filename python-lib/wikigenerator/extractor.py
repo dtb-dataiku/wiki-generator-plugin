@@ -144,8 +144,10 @@ def get_dataset_sources(client, project_key, dataset_name):
 
         for c in column_names:
             lineage = dataset.get_column_lineage(c)
-            graph = _build_graph_from_lineage(lineage)
-            sources.extend(_find_column_sources(graph, f'{project_key}.{dataset_name}'))
+            
+            if lineage:
+                graph = _build_graph_from_lineage(lineage)
+                sources.extend(_find_column_sources(graph, f'{project_key}.{dataset_name}'))
 
         return sorted(list(set([tuple(s.split('.')) for s in sources])))
     except Exception as e:
