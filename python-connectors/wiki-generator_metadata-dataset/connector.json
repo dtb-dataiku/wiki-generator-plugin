@@ -18,6 +18,14 @@
             "label": "Project",
             "type": "PROJECT",
             "getChoicesFromPython": false
+        },
+        {
+            "name": "select_all",
+            "label": "Select all",
+            "type": "BOOLEAN",
+            "description": "Select all datasets",
+            "defaultValue": true,
+            "mandatory": true
         }
     ]
 }
