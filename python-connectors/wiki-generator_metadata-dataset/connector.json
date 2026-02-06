@@ -26,6 +26,12 @@
             "description": "Select all datasets",
             "defaultValue": true,
             "mandatory": true
+        },
+        {
+            "name": "datasets",
+            "label": "Dataset(s)",
+            "type": "DATASETS",
+            "visibilityCondition": "!model.select_all"
         }
     ]
 }
