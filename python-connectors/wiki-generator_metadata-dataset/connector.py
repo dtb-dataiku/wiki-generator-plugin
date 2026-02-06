@@ -1,8 +1,11 @@
 # This file is the actual code for the custom Python dataset wiki-generator_metadata-dataset
+import dataiku
 
 # import the base class for the custom dataset
 from six.moves import xrange
 from dataiku.connector import Connector
+
+from wikigenerator import extractor
 
 """
 A custom Python dataset is a subclass of Connector.
@@ -25,7 +28,9 @@ class MyConnector(Connector):
         Connector.__init__(self, config, plugin_config)  # pass the parameters to the base class
 
         # perform some more initialization
-        self.theparam1 = self.config.get("parameter1", "defaultValue")
+        self.project_key = self.config.get("project", None)
+        
+        client = 
 
     def get_read_schema(self):
         """
