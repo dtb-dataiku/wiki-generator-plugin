@@ -10,7 +10,6 @@
     "writable": true,
     "supportAppend": false,
 
-
     /*"paramsPythonSetup": "get_options_connector.py",*/
     "params": [
         {
