@@ -9,15 +9,11 @@ def _clean_text(text):
         return ''
 
     cleaned_text = re.sub(r'\s+', ' ', text.replace('|', ' - ').strip())
-#     cleaned_text = re.sub(r'\n\s*', ', ', cleaned_text) # NOTE: Need to figure how to turn markdown into plain text
-#     cleaned_text = re.sub(r'^\n\s*-\s*.*', '; ', cleaned_text)
-
-    # Remove headers
-    cleaned_text = re.sub(r'#+\s+', '', cleaned_text)
-    # Remove bold/italic
-    cleaned_text = re.sub(r'[*_]{1,3}', '', cleaned_text)
-    # Remove links [text](url) -> text
-    cleaned_text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', cleaned_text)
+    # cleaned_text = re.sub(r'\n\s*', ', ', cleaned_text) # NOTE: Need to figure how to turn markdown into plain text
+    # cleaned_text = re.sub(r'^\n\s*-\s*.*', '; ', cleaned_text)
+    cleaned_text = re.sub(r'#+\s+', '', cleaned_text) # Remove headers
+    # cleaned_text = re.sub(r'[*_]{1,3}', '', cleaned_text) # Remove bold/italic
+    # cleaned_text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', cleaned_text) # Remove links [text](url) -> text
 
     return cleaned_text.strip()
 
@@ -31,7 +27,7 @@ def _generate_table_rows(columns):
     for c, column in enumerate(columns):
         col_name = column.get('name', f'Column_{c}')
         col_type = column.get('type', 'string')
-        col_desc = column.get('description', '')
+        col_desc = _clean_text(column.get('description', ''))
 
         row = f"| **{col_name}** | `{col_type}` | {col_desc} |"
         rows.append(row)
