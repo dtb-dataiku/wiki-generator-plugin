@@ -179,5 +179,7 @@ def get_project_datasets_metadata(client, project_key, datasets=None):
             'connection_type': ds_metadata['type'],
             'connection_name': ds_metadata['connection']
         })
-            
-        return rows
+    except Exception as e:
+        print(f'Error getting project or project dataset(s) for {project_key}: {e}')
+
+    return rows
