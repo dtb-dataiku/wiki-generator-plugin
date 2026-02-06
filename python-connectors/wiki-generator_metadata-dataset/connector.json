@@ -35,7 +35,7 @@
                 {"value": "dataset1", "label": "Dataset 1"},
                 {"value": "dataset2", "label": "Dataset 2"},
                 {"value": "dataset3", "label": "Dataset 3"}
-            ]
+            ],
             "visibilityCondition": "!model.select_all",
             "getChoicesFromPython": false
         }
