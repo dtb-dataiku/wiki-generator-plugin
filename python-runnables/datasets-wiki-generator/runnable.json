@@ -16,7 +16,7 @@
             "type": "PROJECT_MACROS"
         }
     ],
-    "paramsPythonSetup": "get_options.py",
+    "paramsPythonSetup": "get_options_runnable.py",
     "params": [
         {
             "name": "select_all",
