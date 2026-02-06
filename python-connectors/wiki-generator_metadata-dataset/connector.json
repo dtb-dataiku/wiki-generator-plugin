@@ -30,8 +30,7 @@
         {
             "name": "datasets",
             "label": "Dataset(s)",
-            "type": "DATASETS",
-            "visibilityCondition": "!model.select_all"
+            "type": "DATASETS"
         }
     ]
 }
