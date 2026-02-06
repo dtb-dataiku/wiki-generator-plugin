@@ -30,7 +30,9 @@
         {
             "name": "datasets",
             "label": "Dataset(s)",
-            "type": "DATASETS"
+            "type": "MULTISELECT",
+            "visibilityCondition": "!model.select_all",
+            "getChoicesFromPython": false
         }
     ]
 }
