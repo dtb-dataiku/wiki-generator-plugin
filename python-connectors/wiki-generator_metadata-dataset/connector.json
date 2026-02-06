@@ -11,34 +11,12 @@
     "supportAppend": false,
 
 
-    "paramsPythonSetup": "get_options_connector.py",
+    /*"paramsPythonSetup": "get_options_connector.py",*/
     "params": [
         {
             "name": "project",
             "label": "Project",
-            "type": "PROJECT",
-            "getChoicesFromPython": false
-        },
-        {
-            "name": "select_all",
-            "label": "Select all",
-            "type": "BOOLEAN",
-            "description": "Select all datasets",
-            "defaultValue": true,
-            "mandatory": true
-        },
-        {
-            "name": "datasets",
-            "label": "Dataset(s)",
-            "type": "MULTISELECT",/*
-            "selectChoices": [
-                {"value": "dataset1", "label": "Dataset 1"},
-                {"value": "dataset2", "label": "Dataset 2"},
-                {"value": "dataset3", "label": "Dataset 3"}
-            ],*/
-            "visibilityCondition": "!model.select_all",
-            "getChoicesFromPython": true,
-            "disableAutoReload": true
+            "type": "PROJECT"
         }
     ]
 }
