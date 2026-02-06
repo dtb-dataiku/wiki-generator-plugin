@@ -1,8 +1,8 @@
 /* This file is the descriptor for the python runnable datasets-wiki-generator */
 {
     "meta": {
-        "label": "Data Dictionary",
-        "description": "Create data dictionary for project datasets",
+        "label": "Data Dictionary Wiki",
+        "description": "Create data dictionary wiki article for project datasets",
         "icon": "far fa-newspaper"
     },
 
