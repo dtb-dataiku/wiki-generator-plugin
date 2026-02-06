@@ -11,45 +11,13 @@
     "supportAppend": false,
 
 
-    /* "paramsPythonSetup": "get_options.py", */
+    /*"paramsPythonSetup": "get_options_connector.py",*/
     "params": [
         {
-            "name": "select_all",
-            "label": "Select all",
-            "type": "BOOLEAN",
-            "description": "Select all datasets or matching datasets if filtering with tags",
-            "defaultValue": true,
-            "mandatory": true
-        },
-        {
-            "name": "use_filter",
-            "label": "Filter with tags",
-            "type": "BOOLEAN",
-            "defaultValue": false,
-            "mandatory": true
-        },
-        {
-            "name": "tags",
-            "label": "Tag(s)",
-            "type": "MULTISELECT",
-            "visibilityCondition": "model.use_filter",
-            "getChoicesFromPython": true,
-            "disableAutoReload": true
-        },
-        {
-            "name": "exclude",
-            "label": "Exclude selected tag(s)",
-            "type": "BOOLEAN",
-            "defaultValue": false,
-            "mandatory": true,
-            "visibilityCondition": "model.use_filter"
-        },
-        {
-            "name": "datasets",
-            "label": "Dataset(s)",
-            "type": "MULTISELECT",
-            "visibilityCondition": "!model.select_all",
-            "getChoicesFromPython": true
+            "name": "project",
+            "label": "Project",
+            "type": "PROJECT",
+            "getChoicesFromPython": false
         }
     ]
 }
