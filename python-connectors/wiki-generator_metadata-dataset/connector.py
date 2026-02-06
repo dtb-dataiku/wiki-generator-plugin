@@ -30,7 +30,8 @@ class MyConnector(Connector):
         # perform some more initialization
         self.project_key = self.config.get("project", None)
         
-        client = 
+        client = extractor.get_dataiku_client()
+        project = client.get_project(self.project_key)
 
     def get_read_schema(self):
         """
