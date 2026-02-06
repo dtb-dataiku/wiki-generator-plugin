@@ -29,6 +29,7 @@ class MyConnector(Connector):
 
         # perform some more initialization
         self.project_key = self.config.get("project", None)
+        print(f'--> PROJECT KEY: {self.project_key}')
         
         client = extractor.get_dataiku_client()
         project = client.get_project(self.project_key)
