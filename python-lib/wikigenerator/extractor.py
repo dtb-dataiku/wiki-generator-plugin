@@ -151,3 +151,33 @@ def get_dataset_sources(client, project_key, dataset_name):
     except Exception as e:
         print(f'Error getting source dataset(s) for {dataset_name}: {e}')
         return None
+    
+def get_project_datasets_metadata(client, project_key, datasets=None):
+    '''Get dataset information for all datasets in a project.'''
+    
+    rows = []
+    
+    try:
+        project = client.get_project(project_key)
+        
+        if not (datasets and isinstance(datasets, list)):
+            datasets = list_project_datasets(client, project_key)
+            
+        for ds_pkey, ds_name in datasets:
+            ds_metadata = get_dataset_metadata(client, ds_pkey, ds_name)
+            ds_columns = ', '.join([c['name'] for c in ds_metadata['columns']])
+            ds_sources = ', '.join(['.'.join(s) for s in get_dataset_sources(client, ds_pkey, ds_name)])
+            
+        rows.append({
+            'project_key': project_key,
+            'project_name': project.get_summary()['name'],
+            'dataset_name': ds_metadata['name'],
+            'dataset_project_key': ds_metadata['project_key'],
+            'dataset_project_name': ds_metadata['project_name'],
+            'dataset_columns': ds_columns,
+            'dataset_sources': ds_sources,
+            'connection_type': ds_metadata['type'],
+            'connection_name': ds_metadata['connection']
+        })
+            
+        return rows
