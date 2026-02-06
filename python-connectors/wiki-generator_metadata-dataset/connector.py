@@ -25,14 +25,17 @@ class MyConnector(Connector):
         file settings.json at the root of the plugin directory are passed as a json
         object 'plugin_config' to the constructor
         """
+        
         Connector.__init__(self, config, plugin_config)  # pass the parameters to the base class
 
-        # perform some more initialization
         self.project_key = self.config.get("project", None)
-        print(f'--> PROJECT KEY: {self.project_key}')
         
-        client = extractor.get_dataiku_client()
-        project = client.get_project(self.project_key)
+        self.COLUMNS = [
+            'project_key', 'project_name',
+            'dataset_name', 'dataset_project_key', 'dataset_project_name', 'dataset_columns', 'dataset_sources',
+            'connection_type', 'connection_name'
+        ]
+        self.TYPES = ['string'] * len(self.COLUMNS)
 
     def get_read_schema(self):
         """
@@ -54,9 +57,8 @@ class MyConnector(Connector):
         Supported types are: string, int, bigint, float, double, date, boolean
         """
 
-        # In this example, we don't specify a schema here, so DSS will infer the schema
-        # from the columns actually returned by the generate_rows method
-        return None
+        columns_specs = [{'name': c[0], 'type': c[1]} for c in zip(self.COLUMNS, self.TYPES)]
+        return {"columns": types}
 
     def generate_rows(self, dataset_schema=None, dataset_partitioning=None,
                             partition_id=None, records_limit = -1):
