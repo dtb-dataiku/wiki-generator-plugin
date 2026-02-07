@@ -68,7 +68,7 @@ class MyConnector(Connector):
         Supported types are: string, int, bigint, float, double, date, boolean
         """
 
-        columns_specs = [{'name': c[0], 'type': c[1]} for c in zip(self.COLUMNS, self.TYPES)]
+        columns_specs = [{'name': c[0], 'type': c[1], 'comment': c[2]} for c in zip(self.COLUMNS, self.TYPES, self.COMMENTS)]
         return {"columns": columns_specs}
 
     def generate_rows(self, dataset_schema=None, dataset_partitioning=None,
