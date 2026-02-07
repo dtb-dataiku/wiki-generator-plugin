@@ -170,17 +170,17 @@ def get_project_datasets_metadata(client, project_key, datasets=None):
             ds_columns = ', '.join([c['name'] for c in ds_metadata['columns']])
             ds_sources = ', '.join(['.'.join(s) for s in get_dataset_sources(client, ds_pkey, ds_name)])
             
-        rows.append({
-            'project_key': project_key,
-            'project_name': project.get_summary()['name'],
-            'dataset_name': ds_metadata['name'],
-            'dataset_project_key': ds_metadata['project_key'],
-            'dataset_project_name': ds_metadata['project_name'],
-            'dataset_columns': ds_columns,
-            'dataset_sources': ds_sources,
-            'connection_type': ds_metadata['type'],
-            'connection_name': ds_metadata['connection']
-        })
+            rows.append({
+                'project_key': project_key,
+                'project_name': project.get_summary()['name'],
+                'dataset_name': ds_metadata['name'],
+                'dataset_project_key': ds_metadata['project_key'],
+                'dataset_project_name': ds_metadata['project_name'],
+                'dataset_columns': ds_columns,
+                'dataset_sources': ds_sources,
+                'connection_type': ds_metadata['type'],
+                'connection_name': ds_metadata['connection']
+            })
     except Exception as e:
         print(f'Error getting project or project dataset(s) for {project_key}: {e}')
 
