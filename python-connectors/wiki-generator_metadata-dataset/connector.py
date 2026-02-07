@@ -58,7 +58,7 @@ class MyConnector(Connector):
         """
 
         columns_specs = [{'name': c[0], 'type': c[1]} for c in zip(self.COLUMNS, self.TYPES)]
-        return {"columns": types}
+        return {"columns": columns_specs}
 
     def generate_rows(self, dataset_schema=None, dataset_partitioning=None,
                             partition_id=None, records_limit = -1):
