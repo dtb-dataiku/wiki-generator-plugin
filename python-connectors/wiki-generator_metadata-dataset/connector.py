@@ -36,6 +36,17 @@ class MyConnector(Connector):
             'connection_type', 'connection_name'
         ]
         self.TYPES = ['string'] * len(self.COLUMNS)
+        self.COMMENTS = [
+            'Unique identifier for the project, e.g., BOXOFFICEDASHBOARDV2.',
+            'Name of the project, e.g., Box Office Dashboard v2.',
+            'Name of the dataset, e.g., movie_boxoffice_data.',
+            'Project key associated with the dataset, e.g., BOXOFFICE.',
+            'Project name associated with the dataset, e.g., Box Office.',
+            'List of columns in the dataset, e.g., MOVIE_ID, TYPE, ROLE.',
+            'Sources of the dataset, e.g., BOXOFFICE.boxoffice_data.',
+            'Type of connection used, e.g., Snowflake.',
+            'Name of the connection, e.g., SEDEMO.'
+        ]
 
     def get_read_schema(self):
         """
