@@ -1,7 +1,8 @@
 {
   "acceptedPythonInterpreters": [
     "PYTHON39",
-    "PYTHON310"
+    "PYTHON310",
+    "PYTHON313"
   ],
   "corePackagesSet": "AUTO",
   "forceConda": false,
